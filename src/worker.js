@@ -45,12 +45,21 @@ export default {
       };
       console.log("SENDING TO " + env.INBOUND_POST_URL)
       console.log("WITH " + env.INBOUND_TOKEN)
-      const res = await fetch(env.INBOUND_POST_URL, {
+
+      let apiUrl = env.INBOUND_POST_URL;
+
+      if (payload.to.includes("c.xap3y.fun")) {
+        apiUrl = env.INBOUND_POST_URL_PROD
+      }
+
+      console.log("API URL:", apiUrl);
+
+      const res = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "X-Email-Token": env.INBOUND_TOKEN,
-          "User-Agent": "CF-Worker/1.0 (https://xap3y.fun"
+          "User-Agent": "CF-Worker/1.0 (https://xap3y.fun)"
         },
         body: JSON.stringify(payload)
       });
