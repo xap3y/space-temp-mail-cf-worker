@@ -29,7 +29,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          npx wrangler secret put INBOUND_TOKEN --yes <<< "$INBOUND_TOKEN"
+          echo -n "$INBOUND_TOKEN" | npx wrangler secret put INBOUND_TOKEN
 
       - name: Deploy with Wrangler
         uses: cloudflare/wrangler-action@v3
