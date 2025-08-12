@@ -1,0 +1,11 @@
+name = "cf-email-worker"
+main = "src/worker.js"
+compatibility_date = "2025-08-01"
+
+workers_dev = true
+
+[vars]
+INBOUND_POST_URL = "https://api0.xap3y.tech/v1/email/inbound"
+
+[observability.logs]
+enabled = true
