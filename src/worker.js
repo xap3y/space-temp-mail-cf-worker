@@ -48,7 +48,7 @@ export default {
 
       let apiUrl = env.INBOUND_POST_URL;
 
-      if (payload.to.includes("c.xap3y.fun")) {
+      if (payload.to.includes("c.xap3y.fun") || payload.to.includes("xap3x.fun")) {
         apiUrl = env.INBOUND_POST_URL_PROD
       }
 
