@@ -1,12 +1,16 @@
 name = "cf-email-worker"
 main = "src/worker.js"
-compatibility_date = "2025-08-01"
+compatibility_date = "2026-03-24"
 
 workers_dev = true
 
 [vars]
-INBOUND_POST_URL = "https://api0.xap3y.tech/v1/email/inbound"
-INBOUND_POST_URL_PROD = "https://call.xap3y.space/v1/email/inbound"
+INBOUND_POST_URL = "https://api0.xap3y.eu/v1/email/inbound"
+INBOUND_POST_URL_PROD = "https://call.xap3y.eu/v1/email/inbound"
+CATCH_EMAIL = "xap3ytemp@gmail.com"
+USER_AGENT = "https://worker.xap3y.eu"
+PROD_MAIL_ONE = "c.xap3y.fun"
+PROD_MAIL_TWO = "xap3x.fun"
 
 [observability.logs]
 enabled = true

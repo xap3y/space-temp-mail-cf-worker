@@ -14,7 +14,7 @@ export default {
   async email(message, env, ctx) {
     try {
 
-      await message.forward("xap3ytemp@gmail.com");
+      await message.forward(env.CATCH_EMAIL);
 
       const raw = await new Response(message.raw).arrayBuffer();
       const parsed = await new PostalMime().parse(raw);
@@ -48,7 +48,7 @@ export default {
 
       let apiUrl = env.INBOUND_POST_URL;
 
-      if (payload.to.includes("c.xap3y.fun") || payload.to.includes("xap3x.fun")) {
+      if (payload.to.includes(env.PROD_MAIL_ONE) || payload.to.includes(env.PROD_MAIL_TWO)) {
         apiUrl = env.INBOUND_POST_URL_PROD
       }
 
@@ -59,7 +59,7 @@ export default {
         headers: {
           "Content-Type": "application/json",
           "X-Email-Token": env.INBOUND_TOKEN,
-          "User-Agent": "CF-Worker/1.0 (https://xap3y.fun)"
+          "User-Agent": "CF-Worker/1.0 (" + env.USER_AGENT + ")"
         },
         body: JSON.stringify(payload)
       });
@@ -70,8 +70,8 @@ export default {
       console.log("Inbound POST succeeded:", res.status);
       const text = await res.text();
       const text2 = JSON.stringify(res)
-      console.log("Response text:", text);
-      console.log("Response text2:", text2);
+      console.log("Response text: ", text);
+      console.log("Response text stringify: ", text2);
     } catch (err) {
       console.error("Email handler error:", err);
     }
